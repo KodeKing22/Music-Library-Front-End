@@ -1,12 +1,7 @@
 import React, {useEffect} from "react";
 
-const DisplayMusic = (props) => {
-
-    useEffect(()=> {
-        console.log("display msuc" ,props.songs)
-    },[])
-
-    
+const DisplayMusic = (songs) => {
+   
     return (
     
         <table className="table">
@@ -20,7 +15,7 @@ const DisplayMusic = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {/* {props.songs.map((entry, index) => {
+                {songs.songs.map((entry, index) => {
                     return (
                         <tr key={index}>
                             <td>{index + 1}</td>
@@ -31,7 +26,7 @@ const DisplayMusic = (props) => {
                             <td>{entry.genre}</td>
                         </tr>
                     )
-                })} */}
+                })}
             </tbody>
         </table>
         

@@ -6,20 +6,15 @@ import DisplayMusic from "./Components/DisplayMusic/DisplayMusic";
 
 function App() {
 
-  const [songs, setSongs] = useState([
-    {
-      "fname": "cash",
-      "lname": "myers"
-    }
-  ]);
+  const [songs, setSongs] = useState([]);
   
   useEffect(() =>{
     
       async function getAllSongs(){
         let response = await axios.get('http://127.0.0.1:8000/songs/');
-         setSongs(response.date);
+         setSongs(response.data);
     
-        console.log('app data',response.data);
+        console.log(response.data);
         
       }
     getAllSongs();
@@ -27,6 +22,7 @@ function App() {
 
   return (
     <div >
+      <h1>Music Library</h1>
       <DisplayMusic songs={songs} />
       <h1>Hello</h1>
     </div>
