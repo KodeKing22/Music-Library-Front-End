@@ -12,7 +12,11 @@ const SearchBar = (songs) => {
         setSearch(tempSearchData);
     }, [])
 
+    return({
 
+
+})
 
 }
-    
+
+export default SearchBar

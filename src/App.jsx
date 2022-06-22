@@ -1,13 +1,20 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import DisplayMusic from "./Components/DisplayMusic/DisplayMusic";
-
+import SearchBar from "./Components/SearchBar/SearchBar";
+import AddNewSong from "./Components/AddNewSong/AddNewSong";
 // import './App.css';
 
 function App() {
 
   const [songs, setSongs] = useState([]);
   
+  function AddNewSong(songs){
+
+    let tempSearchData = [...songs, songs]
+
+    setSongs(tempSearchData)
+  }
   useEffect(() =>{
     
       async function getAllSongs(){
@@ -24,7 +31,12 @@ function App() {
     <div >
       <h1>Music Library</h1>
       <DisplayMusic songs={songs} />
-      <h1>Hello</h1>
+      <div>
+      <SearchBar songs={songs}/>
+      </div>
+      <div className='border-box'>
+      <AddNewSong AddNewSongProperty={AddNewSong} />
+      </div>
     </div>
   );
 }
