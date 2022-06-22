@@ -1,42 +1,46 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import DisplayMusic from "./Components/DisplayMusic/DisplayMusic";
-import SearchBar from "./Components/SearchBar/SearchBar";
 import AddNewSong from "./Components/AddNewSong/AddNewSong";
-// import './App.css';
+import './App.css';
 
 function App() {
 
   const [songs, setSongs] = useState([]);
   
-  function AddNewSong(songs){
+  async function getAllSongs(){
+    let response = await axios.get('http://127.0.0.1:8000/songs/');
+     setSongs(response.data);
 
-    let tempSearchData = [...songs, songs]
-
-    setSongs(tempSearchData)
+    console.log(response.data);
+    
   }
   useEffect(() =>{
+  getAllSongs(); 
     
-      async function getAllSongs(){
-        let response = await axios.get('http://127.0.0.1:8000/songs/');
-         setSongs(response.data);
-    
-        console.log(response.data);
-        
-      }
-    getAllSongs();
   }, [])
 
+      async function AddNewSongProperty(newSong){
+        let response = await axios.post('http://127.0.0.1:8000/songs/', newSong);
+        if(response.status===201){
+          await getAllSongs();
+          }
+        }
+      
+
+
+
   return (
-    <div >
+    <div className="App">
       <h1>Music Library</h1>
       <DisplayMusic songs={songs} />
       <div>
-      <SearchBar songs={songs}/>
+   
       </div>
-      <div className='border-box'>
-      <AddNewSong AddNewSongProperty={AddNewSong} />
+      <div>
+      <AddNewSong AddNewSongProperty={AddNewSongProperty}/>
       </div>
+     <img className="card_img" src="./assets/pexels-matthias-groeneveld-4200747.jpg"/>
     </div>
   );
 }

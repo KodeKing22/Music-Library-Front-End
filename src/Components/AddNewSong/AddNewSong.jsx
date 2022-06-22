@@ -10,40 +10,40 @@ const AddNewSong = (songs) => {
 
         function handlesumit(event) {
             event.preventDefault();
-            let newEntry = {
+            let newSong = {
                 title: title,
                 artist: artist,
                 album: album,
                 release_date: release_date,
-                genre: genre
+                genre: genre,
             };
-            console.log(newEntry);
-            songs.AddNewSongProperty(newEntry)
+            console.log(newSong);
+            songs.AddNewSongProperty(newSong)
         }
 
         return (
             <form onSubmit={handlesumit} className='form-grid'>
                 <div className='form-group'>
                     <label>Title</label>
-                    <input type='string' className='form-control' value={title} onChange={(event) => setTitle(event.value)} />
+                    <input type='text' className='form-control' value={title} onChange={(event) => setTitle(event.target.value)} />
                 </div>
                 <div className='form-group'>
                     <label>Artist</label>
-                    <input type='string' className='form-control' value={artist} onChange={(event) => setArtist(event.value)} />
+                    <input type='text' className='form-control' value={artist} onChange={(event) => setArtist(event.target.value)} />
                 </div>
                 <div className='form-group'>
                     <label>Album</label>
-                    <input type='string' className='form-control' value={album} onChange={(event) => setAlbum(event.value)} />
+                    <input type='text' className='form-control' value={album} onChange={(event) => setAlbum(event.target.value)} />
                 </div>
                 <div className='form-group'>
                     <label>Release Date</label>
-                    <input type='string' className='form-control' value={release_date} onChange={(event) => setReleaseDate(event.value)} />
+                    <input type='date' className='form-control' value={release_date} onChange={(event) => setReleaseDate(event.target.value)} />
                 </div>
                 <div className='form-group'>
                     <label>Genre</label>
-                    <input type='string' className='form-control' value={genre} onChange={(event) => setGenre(event.value)} />
+                    <input type='text' className='form-control' value={genre} onChange={(event) => setGenre(event.target.value)} />
                 </div>
-                <button type='sumbit' className='btn btn=primary' style={{'margin-top': '1em'}}>Add</button>
+                <button type='submit' className='btn btn=primary' style={{'margin-top': '1em'}}>Add</button>
             </form>
 
         );
